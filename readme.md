@@ -8,7 +8,7 @@ GitHub: studentdev-glitch
 Email: louis.maina@student.moringaschool.com
 
 ## Live Project
-You can view the live project here: [Live Akan Name finder Website]()
+You can view the live project here: [Live CineTrack Website]()
 
 ## Screenshot
 This is a screenshot of the form and display of Akan name
@@ -68,35 +68,39 @@ We welcome contributions! If you'd like to improve or add features, feel free to
 6. Open a pull request
 
 ## License Information
-License Type: MIT License
-Permissions:
-- Commercial use
-- Modification
-- Distribution
-- Private use
+This project is licensed under the MIT License. 
 
-Copyright Statement
+### Permissions
+- **Modification:** You are allowed to modify the code.
+- **Private use:** You can use the code for private purposes.
+
+### Copyright Statement
 © 2025 Louis Maina. All Rights Reserved.
 
 #### Copyright Details
+- **Original Creator:** Louis Maina
+- **Year of Creation:** 2025
+- **Rights:** Full copyright protection under international copyright laws.
 
-Original Creator: Louis Maina
-Year of Creation: 2025
-Rights: Full copyright protection under international copyright laws
+### Permitted Uses
+- **Personal use:** You can use the code for personal projects.
+- **Educational purposes:** You can use the code for learning and teaching.
 
-### Usage Rights
+### Restricted Uses
+- **Selling without permission:** You cannot sell the code without explicit permission from the author.
+- **Selling without permission:** You cannot sell the code without explicit permission from the author.
+- **Claiming as original work:** You cannot claim the code as your own original work.
+- **Removing original copyright notice:** You cannot remove the original copyright notice from the code.
 
-#### Permitted:
-- Personal use
-- Educational purposes
-- Non-commercial applications
+### API Usage Restrictions
+- **Rate Limiting:** The API has rate limits to prevent abuse. Exceeding these limits may result in temporary or permanent suspension of access.
+- **Commercial Use:** The API cannot be used for commercial purposes without explicit permission from the author.
+- **Modification:** You are not allowed to modify the API endpoints or responses.
+- **Redistribution:** You cannot redistribute the API or its responses without permission.
+- **Security:** Any attempt to breach the security of the API will result in immediate termination of access and potential legal action.
 
-#### Restricted:
-- Selling without permission
-- Claiming as original work
-- Removing original copyright notice
+For any questions or permissions regarding API usage, please contact:
+- **GitHub:** [studentdev-glitch](https://github.com/studentdev-glitch)
+- **Email:** louis.maina@student.moringaschool.com
 
-#### Contact for Permissions
-GitHub: studentdev-glitch
-Email: louis.maina@student.moringaschool.com
-
+© 2025 Louis Maina. All Rights Reserved.
