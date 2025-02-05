@@ -5,13 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Watchlist</title>
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gray-900 text-white">
+    <nav class="flex justify-between items-center px-6 py-2 bg-black/80 opacity-50 shadow-md sticky top-0 z-50">
+        <!-- DotLottie Animation Logo -->
+        <dotlottie-player src="https://lottie.host/97d7f220-0ff3-4b85-aa40-e6e567df4f02/U7hRqMIr4z.lottie"
+            background="transparent" speed="1" style="width: 50px; height: 50px" loop autoplay></dotlottie-player>
 
+        <!-- Username Display -->
+        <span class="text-2xl text-white whitespace-nowrap ml-4">Watchlist</span>
+
+        <ul class="flex space-x-6">
+            <li><a href="../pages/home.html" class="hover:text-red-500 transition-colors duration-300">Home</a></li>
+            <li><a href="../pages/wishlist.html" class="hover:text-red-500 transition-colors duration-300">Wishlist</a></li>
+            <li><a href="../pages/watched.html" class="hover:text-red-500 transition-colors duration-300">Watched</a>
+            </li>
+        </ul>
+    </nav>
     <div class="container mx-auto p-6">
-        <h1 class="text-3xl font-bold text-center mb-6">My Watchlist</h1>
 
         <div id="watchlistContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <!-- Movies will be displayed here -->
