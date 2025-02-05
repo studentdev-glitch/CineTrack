@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", function () {
     usernameDisplay.style.whiteSpace = "nowrap";
 });
 
-// Search functionality (without debounce)
+// Search functionality
 searchInput.addEventListener("input", function () {
     const query = searchInput.value.trim();
     if (query.length > 2) {
@@ -83,6 +83,41 @@ function displaySearchResults(movies) {
     `).join('')}
     </div>
     `;
+}
+
+// Function to add a movie to the watchlist and save it in localStorage
+function addToWatchlist(id, title, posterPath, overview) {
+    let watchlist = getWatchlist();
+
+    // Check if movie is already in watchlist
+    if (!watchlist.some(movie => movie.id === id)) {
+        watchlist.push({ id, title, posterPath, overview });
+        localStorage.setItem("watchlist", JSON.stringify(watchlist));
+        showNotification(`${title} added to watchlist!`);
+    } else {
+        showNotification(`${title} is already in your watchlist!`, true);
+    }
+}
+
+// Function to get watchlist from localStorage
+function getWatchlist() {
+    return JSON.parse(localStorage.getItem("watchlist")) || [];
+}
+
+// Function to show a notification
+function showNotification(message, isError = false) {
+    const notification = document.createElement("div");
+    notification.className = `fixed bottom-5 left-1/2 transform -translate-x-1/2 px-4 py-3 rounded-lg shadow-lg text-sm md:text-base transition-all duration-300 ${
+        isError ? "bg-red-600" : "bg-green-600"
+    } text-white`;
+    notification.textContent = message;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.opacity = "0";
+        setTimeout(() => notification.remove(), 500);
+    }, 2000);
 }
 
 // Fetch trending movies
