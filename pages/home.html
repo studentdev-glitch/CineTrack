@@ -6,58 +6,187 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineTrack</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./css/style.css">
-    <!-- Import the dotlottie player module -->
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-
-    <style>
-        #usernameDisplay {
-            display: inline-block;
-            white-space: nowrap;
-            font-size: 1.125rem;
-            font-weight: 600;
-        }
-    </style>
 </head>
 
 <body class="bg-gray-900 text-white">
-
     <!-- Navigation Bar -->
-    <nav class="flex justify-between items-center px-6 py-4 bg-black/80 shadow-md">
+    <nav class="flex justify-between items-center px-6 py-4 bg-black/80 shadow-md sticky top-0 z-50">
         <!-- DotLottie Animation Logo -->
         <dotlottie-player src="https://lottie.host/97d7f220-0ff3-4b85-aa40-e6e567df4f02/U7hRqMIr4z.lottie"
             background="transparent" speed="1" style="width: 50px; height: 50px" loop autoplay></dotlottie-player>
 
-        <!-- Display the username from localStorage -->
-        <div id="usernameDisplay" class="text-white ml-4"></div>
-
         <!-- Search Bar -->
-        <input type="text" placeholder="Search movies..."
-            class="px-4 py-2 w-full ml-10 mr-10 rounded-full bg-gray-900 text-white border border-gray-600 focus:ring-1 focus:ring-red-500 focus:border-red-500 outline-none placeholder-gray-400">
+        <input type="text" id="movieSearch" placeholder="Search movies..."
+            class="px-4 py-2 w-full ml-10 mr-10 rounded-md bg-gray-900 text-white border border-gray-600 focus:ring-1 focus:ring-red-500 focus:border-red-500 outline-none placeholder-gray-400">
 
         <!-- Navigation Links -->
         <ul class="flex space-x-6">
             <li><a href="../pages/home.html" class="hover:text-red-500 transition-colors duration-300">Home</a></li>
-            <li><a href="../pages/wishlist.html" class="hover:text-red-500 transition-colors duration-300">Wishlist</a></li>
+            <li><a href="../pages/wishlist.html" class="hover:text-red-500 transition-colors duration-300">Wishlist</a>
+            </li>
             <li><a href="../pages/watched.html" class="hover:text-red-500 transition-colors duration-300">Watched</a>
             </li>
         </ul>
     </nav>
 
+    <!-- Movie Search Results Section -->
+    <div id="movieResults" class="container mx-auto p-6">
+        <!-- Search results will appear here -->
+    </div>
+
+    <!-- Trending Movies Section -->
+    <div class="container mx-auto px-6 py-8">
+        <h2 class="text-3xl font-bold mb-8 text-white">Trending Movies</h2>
+        <div id="trendingMovies"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            <!-- Trending movies will be populated here -->
+        </div>
+    </div>
+
     <script>
-        // Wait for the DOM to load
-        document.addEventListener("DOMContentLoaded", function () {
-            // Retrieve the username from localStorage
-            const username = localStorage.getItem("username");
+        const API_KEY = 'aca159e4435b94813eb9b0355dc52fba';
+        const searchInput = document.getElementById("movieSearch");
+        const movieResults = document.getElementById("movieResults");
+        const trendingMoviesSection = document.getElementById("trendingMovies");
 
-            // If the username exists in localStorage, display it in one line
-            if (username) {
-                const usernameDisplay = document.getElementById("usernameDisplay");
-                usernameDisplay.textContent = `Hello, ${username}`; // Combine "Hello" and username into one line
+        // Search functionality
+        searchInput.addEventListener("input", debounce(function () {
+            const query = searchInput.value.trim();
+            if (query.length > 2) {
+                searchMovies(query);
+            } else {
+                movieResults.innerHTML = '';
             }
-        });
-    </script>
+        }, 500));
 
+        // Debounce function to limit API calls
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Search movies
+        async function searchMovies(query) {
+            try {
+                const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`);
+                const data = await response.json();
+
+                if (data.results.length > 0) {
+                    displaySearchResults(data.results.slice(0, 5));
+                } else {
+                    movieResults.innerHTML = `
+                        <div class="text-center py-8">
+                            <p class="text-red-500 text-lg">No movies found matching your search.</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error searching movies:', error);
+                movieResults.innerHTML = `
+                    <div class="text-center py-8">
+                        <p class="text-red-500 text-lg">An error occurred while searching. Please try again.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Display search results
+        function displaySearchResults(movies) {
+            movieResults.innerHTML = `
+                <div class="grid grid-cols-1 gap-4">
+                    ${movies.map(movie => `
+                        <div class="bg-gray-800 rounded-lg p-4 flex gap-4 hover:bg-gray-700 transition duration-300">
+                            <img src="https://image.tmdb.org/t/p/w92${movie.poster_path}" 
+                                alt="${movie.title}" 
+                                class="w-24 h-36 object-cover rounded-md"
+                                onerror="this.src='https://via.placeholder.com/92x138'">
+                            <div class="flex flex-col justify-between flex-1">
+                                <div>
+                                    <h3 class="text-xl font-bold">${movie.title}</h3>
+                                    <p class="text-gray-400 text-sm mt-2">${movie.overview.slice(0, 150)}...</p>
+                                </div>
+                                <div class="flex items-center gap-4 mt-2">
+                                    <span class="bg-red-500 px-2 py-1 rounded text-sm">
+                                        ★ ${movie.vote_average.toFixed(1)}
+                                    </span>
+                                    <span class="text-gray-400 text-sm">
+                                        ${movie.release_date}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Fetch trending movies
+        async function fetchTrendingMovies() {
+            try {
+                const response = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`);
+                const data = await response.json();
+
+                if (data.results && data.results.length > 0) {
+                    displayTrendingMovies(data.results);
+                } else {
+                    trendingMoviesSection.innerHTML = `
+                        <div class="col-span-full text-center py-8">
+                            <p class="text-red-500 text-lg">No trending movies available.</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error fetching trending movies:', error);
+                trendingMoviesSection.innerHTML = `
+                    <div class="col-span-full text-center py-8">
+                        <p class="text-red-500 text-lg">An error occurred while loading trending movies.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Display trending movies
+        function displayTrendingMovies(movies) {
+            trendingMoviesSection.innerHTML = movies.map(movie => `
+                <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+                    <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" 
+                        alt="${movie.title}" 
+                        class="w-full h-96 object-cover"
+                        onerror="this.src='https://via.placeholder.com/500x750'">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold truncate">${movie.title}</h3>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="bg-red-500 px-2 py-1 rounded text-sm">
+                                ★ ${movie.vote_average.toFixed(1)}
+                            </span>
+                            <span class="text-gray-400 text-sm">
+                                ${movie.release_date}
+                            </span>
+                        </div>
+                        <div class="flex gap-2 mt-4">
+                            <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm flex-1 transition duration-300">
+                                Details
+                            </button>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm flex-1 transition duration-300">
+                                Watchlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize trending movies on page load
+        fetchTrendingMovies();
+    </script>
 </body>
 
 </html>
