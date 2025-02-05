@@ -7,6 +7,11 @@ function getWatchlist() {
     return JSON.parse(localStorage.getItem("watchlist")) || [];
 }
 
+// Function to get the watched list from localStorage
+function getWatchedList() {
+    return JSON.parse(localStorage.getItem("watched")) || [];
+}
+
 // Function to display movies in the watchlist
 function displayWatchlist() {
     const watchlistContainer = document.getElementById("watchlistContainer");
@@ -28,10 +33,16 @@ function displayWatchlist() {
                 <p class="text-gray-400 text-sm mt-2">
                     ${movie.overview.length > 150 ? movie.overview.slice(0, 150) + "..." : movie.overview}
                 </p>
-                <button onclick="removeFromWatchlist(${movie.id})"
-                    class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm w-full mt-4 transition duration-300">
-                    Remove
-                </button>
+                <div class="flex flex-col gap-2 mt-4">
+                    <button onclick="removeFromWatchlist(${movie.id})"
+                        class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm w-full transition duration-300">
+                        Remove
+                    </button>
+                    <button onclick="markAsWatched(${movie.id})"
+                        class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm w-full transition duration-300">
+                        Mark as Watched
+                    </button>
+                </div>
             </div>
         </div>
     `).join('');
@@ -43,4 +54,29 @@ function removeFromWatchlist(movieId) {
     watchlist = watchlist.filter(movie => movie.id !== movieId);
     localStorage.setItem("watchlist", JSON.stringify(watchlist));
     displayWatchlist(); // Refresh the list
+}
+
+function markAsWatched(movieId) {
+    let watchlist = getWatchlist() || [];
+    let watchedMovies = getWatchedList() || [];
+
+    const movieIndex = watchlist.findIndex(m => m.id === movieId);
+    if (movieIndex !== -1) {
+        const movie = watchlist[movieIndex];
+
+        // Prevent duplicates in the watched list
+        if (!watchedMovies.some(m => m.id === movieId)) {
+            watchedMovies.push(movie);
+            localStorage.setItem("watched", JSON.stringify(watchedMovies));
+        }
+
+        // Remove from watchlist
+        watchlist.splice(movieIndex, 1);
+        localStorage.setItem("watchlist", JSON.stringify(watchlist));
+
+        displayWatchlist(); // Refresh the displayed watchlist
+        console.log(`Movie "${movie.title}" marked as watched.`);
+    } else {
+        console.warn(`Movie with ID ${movieId} not found in watchlist`);
+    }
 }
