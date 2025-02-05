@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="./css/style.css">
     <!-- Import the dotlottie player module -->
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+
+    <style>
+        #usernameDisplay {
+            display: inline-block;
+            white-space: nowrap;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-900 text-white">
@@ -19,18 +28,35 @@
         <dotlottie-player src="https://lottie.host/97d7f220-0ff3-4b85-aa40-e6e567df4f02/U7hRqMIr4z.lottie"
             background="transparent" speed="1" style="width: 50px; height: 50px" loop autoplay></dotlottie-player>
 
+        <!-- Display the username from localStorage -->
+        <div id="usernameDisplay" class="text-white ml-4"></div>
+
         <!-- Search Bar -->
         <input type="text" placeholder="Search movies..."
-            class="px-4 py-2 w-full ml-10 mr-10 rounded-md bg-gray-900 text-white border border-gray-600 focus:ring-1 focus:ring-red-500 focus:border-red-500 outline-none placeholder-gray-400">
+            class="px-4 py-2 w-full ml-10 mr-10 rounded-full bg-gray-900 text-white border border-gray-600 focus:ring-1 focus:ring-red-500 focus:border-red-500 outline-none placeholder-gray-400">
 
         <!-- Navigation Links -->
         <ul class="flex space-x-6">
             <li><a href="../pages/home.html" class="hover:text-red-500 transition-colors duration-300">Home</a></li>
-            <li><a href="../pages/movie_details.html" class="hover:text-red-500 transition-colors duration-300">Movies</a></li>
-            <li><a href="../pages/watchlist.html" class="hover:text-red-500 transition-colors duration-300">Watchlist</a></li>
-            <li><a href="../pages/watched.html" class="hover:text-red-500 transition-colors duration-300">Watched</a></li>
+            <li><a href="../pages/wishlist.html" class="hover:text-red-500 transition-colors duration-300">Wishlist</a></li>
+            <li><a href="../pages/watched.html" class="hover:text-red-500 transition-colors duration-300">Watched</a>
+            </li>
         </ul>
     </nav>
+
+    <script>
+        // Wait for the DOM to load
+        document.addEventListener("DOMContentLoaded", function () {
+            // Retrieve the username from localStorage
+            const username = localStorage.getItem("username");
+
+            // If the username exists in localStorage, display it in one line
+            if (username) {
+                const usernameDisplay = document.getElementById("usernameDisplay");
+                usernameDisplay.textContent = `Hello, ${username}`; // Combine "Hello" and username into one line
+            }
+        });
+    </script>
 
 </body>
 
