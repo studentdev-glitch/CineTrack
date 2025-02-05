@@ -1,6 +1,13 @@
 # CineTrack
 ## Project description
+CineTrak is an easy-to-use app that helps you keep track of movies and TV shows you want to watch, are watching, or have already seen. It makes discovering new content super simple and fun!
 
+## Features
+Track Movies & TV Shows: Easily keep tabs on what you've watched, are watching, or plan to watch.
+Watchlists: Create and organize your own watchlists.
+Ratings: See ratings from sites like IMDb, Rotten Tomatoes, Metacritic, and Trakt.
+Trending: Stay updated with the latest trending movies and TV shows.
+Search: Find what you want to watch in seconds with a quick search.
 
 ## Developer Information
 Author: Louis Maina
@@ -28,7 +35,26 @@ To get this project up and running on your local machine, follow these steps:
 3. Open `index.html` in your browser to view the website or u can use live server a visual studio extension to run it on a browser which has feature of hot reload reducing devlopment time from refreshing the web page when making changes
 
 ## Behavior-Driven Development (BDD)
+#### Feature: Track Movies & TV Shows
+As a user, I want to keep track of movies and TV shows I have watched, am watching, or plan to watch, so that I can easily manage my watchlist.
 
+##### Scenario: Add a movie to the watchlist
+- **Given** I am on the homepage
+- **When** I search for a movie and click the "Add to Watchlist" button
+- **Then** the movie should be added to my watchlist
+
+##### Scenario: Mark a movie as watched
+- **Given** I have a movie in my watchlist
+- **When** I click the "Mark as Watched" button
+- **Then** the movie should be marked as watched
+
+#### Feature: Search for Movies & TV Shows
+As a user, I want to search for movies and TV shows, so that I can quickly find what I want to watch.
+
+##### Scenario: Search for a TV show
+- **Given** I am on the homepage
+- **When** I enter a TV show name in the search bar and press enter
+- **Then** I should see a list of TV shows matching the search query
 
 ## Features
 This project is a website designed using HTML and CSS and JS. The goal is to provide a functional and visually appealing l.
