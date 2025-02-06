@@ -26,7 +26,6 @@
                 </div>
                 <!-- Username Display -->
                 <span id="usernameDisplay" class="text-gray-300 text-sm text-wrap"></span>
-
                 <!-- Navigation Links -->
                 <div class="flex ml-4 mr-4">
                     <ul class="flex mr-2">
@@ -37,32 +36,24 @@
                 </div>
             </div>
     </nav>
-    <main class="bg-gray-900 text-white flex items-center justify-center min-h-screen m-4">
-        <div class="bg-gray-800 p-6 rounded-2xl shadow-lg max-w-md w-full">
-            <h2 class="text-xl font-semibold text-center mb-4">Add a Movie</h2>
-        
-            <form id="movieForm" class="space-y-4">
+    <main class="min-h-screen bg-gray-900 items-center text-white flex justify-center m-4">
+        <div class="bg-gray-800 p-6 rounded-2xl max-w-md w-full">
+            <h2 class="text-xl text-center mb-4">Add a Movie</h2>
+            <form id="movieForm" class="mb-4">
                 <!-- Movie Name -->
                 <div>
-                    <label for="movieName" class="block text-sm font-medium">Movie Name</label>
-                    <input type="text" id="movieName" name="movieName"
-                        class="w-full mt-1 p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500"
-                        required>
+                    <label for="movieName" class="text-sm">Movie Name</label>
+                    <input type="text" id="movie-name" name="movieName"class="w-full mt-1 p-2 rounded-lg bg-gray-700 outline-none"required>
                 </div>
-        
-                <!-- Release Year -->
+                <!-- movie Release Year -->
                 <div>
-                    <label for="releaseYear" class="block text-sm font-medium">Release Year</label>
-                    <input type="number" id="releaseYear" name="releaseYear"
-                        class="w-full mt-1 p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500"
-                        min="1900" max="2099" required>
+                    <label for="releaseYear" class="text-sm ">Release Year</label>
+                    <input type="date" id="release-year" name="releaseYear"class="w-full mt-1 p-2 rounded-lg bg-gray-700 outline-none"max="2025" required>
                 </div>
-        
-                <!-- Genre -->
+                <!-- movie category -->
                 <div>
-                    <label for="genre" class="block text-sm font-medium">Genre</label>
-                    <select id="genre" name="genre"
-                        class="w-full mt-1 p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500">
+                    <label for="movie-genre" class="text-sm ">Genre</label>
+                    <select id="movie-genre" name="genre" class="w-full mt-1 p-2 outline-none rounded-lg bg-gray-700">
                         <option value="Action">Action</option>
                         <option value="Comedy">Comedy</option>
                         <option value="Drama">Drama</option>
@@ -71,37 +62,28 @@
                         <option value="Other">Other</option>
                     </select>
                 </div>
-        
-                <!-- Personal Rating -->
+                <!-- movie Rating -->
                 <div>
-                    <label for="rating" class="block text-sm font-medium">Your Rating (1-10)</label>
-                    <input type="number" id="rating" name="rating"
-                        class="w-full mt-1 p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500"
-                        min="1" max="10" required>
+                    <label for="rating" class="text-sm">Your Rating (1-10)</label>
+                    <input type="number" id="rating" name="rating"class="w-full rounded-lg bg-gray-700 mt-1 p-2 outline-none"min="1" max="10" required>
                 </div>
-        
-                <!-- Watched Status -->
+                <!-- movie Status -->
                 <div>
                     <label for="status" class="block ">Genre</label>
                     <select id="genre" name="genre"
-                        class="w-full mt-1 p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500">
+                        class="w-full p-2 mt-1 rounded-lg bg-gray-700 outline-none ">
                         <option value="Watched">Watched</option>
                         <option value="Watchlist">Add to watchlist</option>
                     </select>
                 </div>
-        
                 <!-- Movie description -->
                 <div>
-                    <label for="notes" class="block text-sm font-medium">Movie description</label>
-                    <textarea id="notes" name="notes" rows="3"
-                        class="w-full mt-1 p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                    <label for="movie-details" class="block text-sm font-medium">Movie description</label>
+                    <textarea id="movie-details" name="movie info" rows="3"
+                        class="w-full mt-1 p-2 rounded-lg bg-gray-700 outline-none"></textarea>
                 </div>
-        
                 <!-- Submit Button -->
-                <button type="submit"
-                    class="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 rounded-lg transition">
-                    Save Movie
-                </button>
+                <button id="movie-submit" type="submit"class="w-full bg-red-500 py-2 rounded-lg hover:bg-red-600 text-white">Save Movie data</button>
             </form>
         </div>
     </main>
