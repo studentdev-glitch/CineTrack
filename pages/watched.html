@@ -10,30 +10,51 @@
 </head>
 
 <body class="bg-gray-900 text-white">
-    <nav class="flex justify-between items-center px-6 py-2 bg-black/80 opacity-50 shadow-md sticky top-0 z-50">
+    <nav class="flex items-center justify-between px-4 py-2 bg-black/80 shadow-md sticky top-0 z-50">
         <!-- DotLottie Animation Logo -->
         <dotlottie-player src="https://lottie.host/97d7f220-0ff3-4b85-aa40-e6e567df4f02/U7hRqMIr4z.lottie"
-            background="transparent" speed="1" style="width: 50px; height: 50px" loop autoplay></dotlottie-player>
+            background="transparent" speed="1" class="w-10 h-10 md:w-12 md:h-12" loop autoplay></dotlottie-player>
 
-        <!-- Username Display -->
-        <span class="text-2xl text-white whitespace-nowrap ml-4">Watchlist</span>
+        <!-- Title -->
+        <span class="text-lg md:text-2xl text-white whitespace-nowrap">Watched Movies</span>
 
-        <ul class="flex space-x-6">
+        <!-- Mobile Menu Button -->
+        <button id="menuToggle" class="md:hidden text-white focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                </path>
+            </svg>
+        </button>
+
+        <!-- Navigation Links -->
+        <ul id="navMenu" class="hidden md:flex space-x-6">
             <li><a href="../pages/home.html" class="hover:text-red-500 transition-colors duration-300">Home</a></li>
-            <li><a href="../pages/wishlist.html" class="hover:text-red-500 transition-colors duration-300">Wishlist</a></li>
+            <li><a href="../pages/wishlist.html" class="hover:text-red-500 transition-colors duration-300">Wishlist</a>
+            </li>
             <li><a href="../pages/watched.html" class="hover:text-red-500 transition-colors duration-300">Watched</a>
             </li>
         </ul>
     </nav>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden flex flex-col items-center bg-black/90 text-white py-2 md:hidden">
+        <a href="../pages/home.html" class="py-2 hover:text-red-500">Home</a>
+        <a href="../pages/wishlist.html" class="py-2 hover:text-red-500">Wishlist</a>
+        <a href="../pages/watched.html" class="py-2 hover:text-red-500">Watched</a>
+    </div>
+
     <div class="container mx-auto px-6 py-8">
         <h2 class="text-3xl font-bold mb-8 text-white text-center">Watched Movies</h2>
-
         <div id="watchedContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
-
-        <div class="text-center mt-8">
-            <a href="../pages/wishlist.html" class="text-red-500 hover:underline">Go back to Watchlist</a>
-        </div>
     </div>
+
+    <script>
+        // Toggle mobile menu
+        document.getElementById('menuToggle').addEventListener('click', function () {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+    </script>
 
     <script src="../js/watched.js"></script>
 </body>
