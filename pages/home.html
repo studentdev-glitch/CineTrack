@@ -37,7 +37,74 @@
                 </div>
             </div>
     </nav>
-
+    <main class="bg-gray-900 text-white flex items-center justify-center min-h-screen m-4">
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-lg max-w-md w-full">
+            <h2 class="text-xl font-semibold text-center mb-4">Add a Movie</h2>
+        
+            <form id="movieForm" class="space-y-4">
+                <!-- Movie Name -->
+                <div>
+                    <label for="movieName" class="block text-sm font-medium">Movie Name</label>
+                    <input type="text" id="movieName" name="movieName"
+                        class="w-full mt-1 p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                        required>
+                </div>
+        
+                <!-- Release Year -->
+                <div>
+                    <label for="releaseYear" class="block text-sm font-medium">Release Year</label>
+                    <input type="number" id="releaseYear" name="releaseYear"
+                        class="w-full mt-1 p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                        min="1900" max="2099" required>
+                </div>
+        
+                <!-- Genre -->
+                <div>
+                    <label for="genre" class="block text-sm font-medium">Genre</label>
+                    <select id="genre" name="genre"
+                        class="w-full mt-1 p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500">
+                        <option value="Action">Action</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+        
+                <!-- Personal Rating -->
+                <div>
+                    <label for="rating" class="block text-sm font-medium">Your Rating (1-10)</label>
+                    <input type="number" id="rating" name="rating"
+                        class="w-full mt-1 p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                        min="1" max="10" required>
+                </div>
+        
+                <!-- Watched Status -->
+                <div>
+                    <label for="status" class="block ">Genre</label>
+                    <select id="genre" name="genre"
+                        class="w-full mt-1 p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500">
+                        <option value="Watched">Watched</option>
+                        <option value="Watchlist">Add to watchlist</option>
+                    </select>
+                </div>
+        
+                <!-- Movie description -->
+                <div>
+                    <label for="notes" class="block text-sm font-medium">Movie description</label>
+                    <textarea id="notes" name="notes" rows="3"
+                        class="w-full mt-1 p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                </div>
+        
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 rounded-lg transition">
+                    Save Movie
+                </button>
+            </form>
+        </div>
+    </main>
     <script src="../js/home.js"></script>
 </body>
 
