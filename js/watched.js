@@ -1,46 +1,57 @@
-document.addEventListener("DOMContentLoaded", function () {
-    displayWatchedMovies();
-});
+// Step 1: Get the container where movies will be displayed
+const watchedContainer = document.getElementById("watchedContainer");
 
-// Function to get watched movies from localStorage
-function getWatchedList() {
-    return JSON.parse(localStorage.getItem("watched")) || [];
-}
+// Step 2: Function to load and display watched movies
+function loadWatchedMovies() {
+    // Retrieve the list of all movies from localStorage
+    const allMovies = JSON.parse(localStorage.getItem("movies")) || [];
 
-// Function to display watched movies
-function displayWatchedMovies() {
-    const watchedContainer = document.getElementById("watchedContainer");
-    const watchedMovies = getWatchedList();
+    // Filter only the movies that are marked as "Watched"
+    const watchedMovies = allMovies.filter(movie => movie.status === "Watched");
 
+    // If there are no watched movies, display a message
     if (watchedMovies.length === 0) {
-        watchedContainer.innerHTML = `<p class="text-center text-gray-400 text-lg">You haven't watched any movies yet.</p>`;
+        watchedContainer.innerHTML = `<p class="text-center text-white">No watched movies yet.</p>`;
         return;
     }
 
-    watchedContainer.innerHTML = watchedMovies.map(movie => `
-        <div class="bg-gray-800 rounded-xl overflow-hidden transform hover:scale-105 transition duration-300">
-            <img src="https://image.tmdb.org/t/p/w500${movie.posterPath}" 
-                alt="${movie.title}" 
-                class="h-80 w-full object-fill"
-                onerror="this.src='https://via.placeholder.com/500x750'">
-            <div class="p-4">
-                <h3 class="text-lg font-bold">${movie.title}</h3>
-                <p class="text-gray-400 text-sm mt-2">
-                    ${movie.overview.length > 150 ? movie.overview.slice(0, 150) + "..." : movie.overview}
-                </p>
-                <button onclick="removeFromWatched(${movie.id})"
-                    class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm w-full mt-4 transition duration-300">
-                    Remove from Watched
-                </button>
+    // Clear the container before adding new content
+    watchedContainer.innerHTML = '';
+
+    // Step 3: Display each watched movie in the container
+    watchedMovies.forEach(movie => {
+        const movieCard = document.createElement("div");
+        movieCard.classList.add("bg-gray-800", "p-4", "rounded-lg", "shadow-lg");
+
+        movieCard.innerHTML = `
+            <img src="../src/CineTrack.jpg" alt="Movie Poster" class=" h-64 w-full object-fit rounded-md mb-4">
+            <h3 class="text-xl font-semibold">${movie.movieName}</h3>
+            <p class="text-sm">Released: ${movie.releaseYear}</p>
+            <p class="text-sm">${movie.genre}</p>
+            <p class="text-sm">${movie.description}</p>
+            <div class="flex justify-between mt-4">
+                <button onclick="deleteMovie(${movie.id})" class="bg-red-500 text-white py-1 px-4 rounded-md hover:bg-red-600">Delete</button>
             </div>
-        </div>
-    `).join('');
+        `;
+
+        watchedContainer.appendChild(movieCard);
+    });
 }
 
-// Function to remove a movie from the watched list
-function removeFromWatched(movieId) {
-    let watchedMovies = getWatchedList();
-    watchedMovies = watchedMovies.filter(movie => movie.id !== movieId);
-    localStorage.setItem("watched", JSON.stringify(watchedMovies));
-    displayWatchedMovies(); // Refresh the list
+// Step 4: Function to delete a movie from the list
+function deleteMovie(movieId) {
+    // Retrieve the list of movies from localStorage
+    const allMovies = JSON.parse(localStorage.getItem("movies")) || [];
+
+    // Filter out the movie to be deleted by its ID
+    const updatedMovies = allMovies.filter(movie => movie.id !== movieId);
+
+    // Save the updated list of movies back to localStorage
+    localStorage.setItem("movies", JSON.stringify(updatedMovies));
+
+    // Reload the watched movies to update the UI
+    loadWatchedMovies();
 }
+
+// Step 5: Call the function to load watched movies when the page loads
+loadWatchedMovies();
