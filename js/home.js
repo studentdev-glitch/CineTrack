@@ -151,7 +151,7 @@ function displayTrendingMovies(movies) {
     <div class="bg-gray-800 rounded-xl overflow-hidden transform hover:scale-105 transition duration-300">
         <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" 
             alt="${movie.title}" 
-            class="h-80 w-80 object-fill"
+            class="h-80 w-full object-fill"
             onerror="this.src='https://via.placeholder.com/500x750'">
         <div class="p-4">
             <h3 class="text-lg font-bold">${movie.title}</h3>
