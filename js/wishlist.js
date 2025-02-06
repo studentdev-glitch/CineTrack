@@ -36,9 +36,18 @@ function displayWatchlistMovies() {
             movieDescription.classList.add("text-gray-400", "text-sm", "mt-2");
             movieDescription.textContent = movie.description.length > 150 ? `${movie.description.slice(0, 150)}...` : movie.description;
 
+            // "Mark as Watched" button
+            const markAsWatchedButton = document.createElement("button");
+            markAsWatchedButton.classList.add("mt-4", "bg-red-500", "py-2", "rounded-lg", "text-white", "w-full", "hover:bg-red-600");
+            markAsWatchedButton.textContent = "Mark as Watched";
+            markAsWatchedButton.addEventListener("click", () => {
+                markAsWatched(movie.id);
+            });
+
             // Append everything to the card
             movieDetails.appendChild(movieTitle);
             movieDetails.appendChild(movieDescription);
+            movieDetails.appendChild(markAsWatchedButton);
             movieCard.appendChild(movieImage);
             movieCard.appendChild(movieDetails);
 
@@ -46,4 +55,24 @@ function displayWatchlistMovies() {
             watchlistContainer.appendChild(movieCard);
         }
     });
+}
+
+// Function to mark a movie as watched
+function markAsWatched(movieId) {
+    // Retrieve the movies from localStorage
+    let movies = JSON.parse(localStorage.getItem("movies")) || [];
+
+    // Find the movie by its id
+    const movieIndex = movies.findIndex(movie => movie.id === movieId);
+
+    if (movieIndex !== -1) {
+        // Update the status of the movie to 'Watched'
+        movies[movieIndex].status = "Watched";
+
+        // Save the updated movies array back to localStorage
+        localStorage.setItem("movies", JSON.stringify(movies));
+
+        // Refresh the watchlist page
+        displayWatchlistMovies();
+    }
 }
