@@ -4,59 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineTrack-Watchlist</title>
+    <title>CineTrack-Wishlist</title>
     <link rel="shortcut icon" href="../src/CineTrack.jpg" type="image/x-icon">
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gray-900 text-white">
-    <nav class="flex items-center justify-between px-4 py-2 bg-black/80 shadow-md sticky top-0 z-50">
-        <!-- DotLottie Animation Logo -->
-        <dotlottie-player src="https://lottie.host/97d7f220-0ff3-4b85-aa40-e6e567df4f02/U7hRqMIr4z.lottie"
-            background="transparent" speed="1" class="w-10 h-10 md:w-12 md:h-12" loop autoplay></dotlottie-player>
-
-        <!-- Title -->
-        <span class="text-lg md:text-2xl text-white whitespace-nowrap">Watchlist</span>
-
-        <!-- Mobile Menu Button -->
-        <button id="menuToggle" class="md:hidden text-white focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                </path>
-            </svg>
-        </button>
-
-        <!-- Navigation Links -->
-        <ul id="navMenu" class="hidden md:flex space-x-6">
-            <li><a href="../pages/home.html" class="hover:text-red-500 transition-colors duration-300">Home</a></li>
-            <li><a href="../pages/wishlist.html" class="hover:text-red-500 transition-colors duration-300">Wishlist</a>
-            </li>
-            <li><a href="../pages/watched.html" class="hover:text-red-500 transition-colors duration-300">Watched</a>
-            </li>
-        </ul>
+    <!-- Navigation Bar -->
+    <nav class="bg-black/80 shadow-md sticky top-0 z-50 w-full">
+        <div class="w-full">
+            <!-- Navigation bar Content -->
+            <div class="flex items-center justify-between px-4 py-3 ">
+                <!-- lottie animation movie Logo -->
+                <div class="flex items-center">
+                    <dotlottie-player src="https://lottie.host/97d7f220-0ff3-4b85-aa40-e6e567df4f02/U7hRqMIr4z.lottie"
+                        background="transparent" speed="2" style="width: 40px; height: 50px" loop
+                        autoplay></dotlottie-player>
+                </div>
+                <!-- Navigation Links -->
+                <div class="flex ml-4 mr-4">
+                    <ul class="flex mr-2">
+                        <li><a href="../pages/home.html" class="hover:text-red-500  m-2">Home</a></li>
+                        <li><a href="../pages/wishlist.html" class="hover:text-red-500 m-2">Wishlist</a></li>
+                        <li><a href="../pages/watched.html" class="hover:text-red-500 m-2">Watched</a></li>
+                    </ul>
+                </div>
+            </div>
     </nav>
 
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobileMenu" class="hidden flex flex-col items-center bg-black/90 text-white py-2 md:hidden">
-        <a href="../pages/home.html" class="py-2 hover:text-red-500">Home</a>
-        <a href="../pages/wishlist.html" class="py-2 hover:text-red-500">Wishlist</a>
-        <a href="../pages/watched.html" class="py-2 hover:text-red-500">Watched</a>
-    </div>
-
     <div class="container mx-auto p-6">
+        <h2 class="text-3xl font-bold mb-8 text-white text-center">My Watchlist</h2>
         <div id="watchlistContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <!-- Movies will be displayed here -->
         </div>
     </div>
-
-    <script>
-        // Toggle mobile menu
-        document.getElementById('menuToggle').addEventListener('click', function () {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
-        });
-    </script>
 
     <script src="../js/wishlist.js"></script>
 </body>
