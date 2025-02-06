@@ -1,100 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../src/CineTrack.jpg" type="image/x-icon">
     <title>CineTrack-home</title>
+    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lottie CDN -->
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 
 <body class="bg-gray-900 text-white">
     <!-- Navigation Bar -->
-    <nav class="bg-black/80 shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto">
-            <!-- Main Navigation Content -->
-            <div class="flex items-center justify-between px-4 py-3">
-                <!-- Left Section: Logo -->
+    <nav class="bg-black/80 shadow-md sticky top-0 z-50 w-full">
+        <div class="w-full">
+            <!-- Navigation bar Content -->
+            <div class="flex items-center justify-between px-4 py-3 ">
+                <!-- lottie aniamtion movie Logo -->
                 <div class="flex items-center">
                     <dotlottie-player src="https://lottie.host/97d7f220-0ff3-4b85-aa40-e6e567df4f02/U7hRqMIr4z.lottie"
-                        background="transparent" speed="1" style="width: 50px; height: 50px" loop
+                        background="transparent" speed="2" style="width: 40px; height: 50px" loop
                         autoplay></dotlottie-player>
                 </div>
                 <!-- Username Display -->
-                <span id="usernameDisplay" class="text-gray-300 text-sm md:text-base font-semibold"></span>
+                <span id="usernameDisplay" class="text-gray-300 text-sm text-wrap"></span>
 
-                <!-- Middle Section: Search Bar (Always Visible) -->
-                <div class="flex-1 mx-4">
-                    <input type="text" id="movieSearch" placeholder="Search movies..."
-                        class="px-4 py-2 w-full rounded-full bg-gray-900 text-white border border-gray-600 focus:ring-1 focus:ring-red-500 focus:border-red-500 outline-none placeholder-gray-400">
-                </div>
-
-                <!-- Right Section: Navigation Links -->
-                <div class="hidden md:flex">
-                    <ul class="flex space-x-6">
-                        <li><a href="../pages/home.html"
-                                class="hover:text-red-500 transition-colors duration-300">Home</a></li>
-                        <li><a href="../pages/wishlist.html"
-                                class="hover:text-red-500 transition-colors duration-300">Wishlist</a></li>
-                        <li><a href="../pages/watched.html"
-                                class="hover:text-red-500 transition-colors duration-300">Watched</a></li>
+                <!-- Navigation Links -->
+                <div class="flex ml-4 mr-4">
+                    <ul class="flex mr-2">
+                        <li><a href="../pages/home.html" class="hover:text-red-500  m-2">Home</a></li>
+                        <li><a href="../pages/wishlist.html" class="hover:text-red-500 m-2">Wishlist</a></li>
+                        <li><a href="../pages/watched.html" class="hover:text-red-500 m-2">Watched</a></li>
                     </ul>
                 </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button type="button" id="menuButton" class="text-white hover:text-red-500 focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
             </div>
-
-            <!-- Mobile Navigation Menu -->
-            <div id="mobileMenu" class="hidden md:hidden px-4 pb-3">
-                <!-- Username Display -->
-                <div id="usernameDisplay" class="text-lg font-semibold text-white py-2 border-b border-gray-700 mb-2">
-                </div>
-                <ul class="space-y-2">
-                    <li><a href="../pages/home.html"
-                            class="block py-2 hover:text-red-500 transition-colors duration-300">Home</a></li>
-                    <li><a href="../pages/wishlist.html"
-                            class="block py-2 hover:text-red-500 transition-colors duration-300">Wishlist</a></li>
-                    <li><a href="../pages/watched.html"
-                            class="block py-2 hover:text-red-500 transition-colors duration-300">Watched</a></li>
-                </ul>
-            </div>
-        </div>
     </nav>
-
-    <!-- Movie Search Results Section -->
-    <div id="movieResults" class="container mx-auto p-6">
-        <!-- Search results will appear here -->
-    </div>
-
-    <!-- Trending Movies Section -->
-    <div class="container mx-auto px-6 py-8">
-        <h2 class="text-3xl font-bold mb-8 text-white">Trending Movies</h2>
-        <div id="trendingMovies" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
-    </div>
-
-    <script>
-        // Mobile menu toggle functionality
-        const menuButton = document.getElementById('menuButton');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        menuButton.addEventListener('click', () => {
-            const isHidden = mobileMenu.classList.contains('hidden');
-            if (isHidden) {
-                mobileMenu.classList.remove('hidden');
-            } else {
-                mobileMenu.classList.add('hidden');
-            }
-        });
-    </script>
 
     <script src="../js/home.js"></script>
 </body>
