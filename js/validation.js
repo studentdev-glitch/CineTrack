@@ -1,3 +1,4 @@
+// waits for the content to be loaded
 document.addEventListener("DOMContentLoaded", function () {
     const inputField = document.getElementById("username");
     const submitButton = document.getElementById("button");
@@ -5,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     submitButton.addEventListener("click", function () {
         const username = inputField.value.trim();
 
-        // input validation
+        // username input validation
         if (username.length < 3) {
             alert("Username must be at least 3 characters long");
             return;
