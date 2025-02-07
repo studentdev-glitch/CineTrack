@@ -1,27 +1,27 @@
-// Step 1: Get the container where movies will be displayed
-const watchedContainer = document.getElementById("watchedContainer");
+// use of dom to save the container where movies will be displayed in a variable
+const watchedContainer = document.getElementById("moviegrid");
 
-// Step 2: Function to load and display watched movies
+// function that access data in the local storage and uses dom to add the content from the local storgae to grid ui modern ui in the web page 
 function loadWatchedMovies() {
-    // Retrieve the list of all movies from localStorage
+    // access the movie list of all movies from localStorage
     const allMovies = JSON.parse(localStorage.getItem("movies")) || [];
 
-    // Filter only the movies that are marked as "Watched"
+    // Filter only the movies that are marked as Watched as the page should show watched content in the grid
     const watchedMovies = allMovies.filter(movie => movie.status === "Watched");
 
-    // If there are no watched movies, display a message
+    // displays this when no movies are is yet saved in the local storage or no movie is yet marked as watched by the user yet 
     if (watchedMovies.length === 0) {
         watchedContainer.innerHTML = `<p class="text-center text-white">No watched movies yet.</p>`;
         return;
     }
 
-    // Clear the container before adding new content
+    // clear the page html thrpugh dom for like new updates being added
     watchedContainer.innerHTML = '';
 
-    // Step 3: Display each watched movie in the container
+    // Displays each watched movie in the grid design similar to a card design
     watchedMovies.forEach(movie => {
         const movieCard = document.createElement("div");
-        movieCard.classList.add("bg-gray-800", "p-4", "rounded-lg", "shadow-lg");
+        movieCard.classList.add("bg-gray-800", "p-4", "rounded-lg");
 
         movieCard.innerHTML = `
             <img src="../src/CineTrack.jpg" alt="Movie Poster" class=" h-64 w-full object-fit rounded-md mb-4">
