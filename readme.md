@@ -6,8 +6,39 @@ CineTrak is an easy-to-use app that helps you keep track of movies and TV shows 
 Track Movies & TV Shows: Easily keep tabs on what you've watched, are watching, or plan to watch.
 Watchlists: Create and organize your own watchlists.
 Ratings: See ratings from sites like IMDb, Rotten Tomatoes, Metacritic, and Trakt.
-Trending: Stay updated with the latest trending movies and TV shows.
-Search: Find what you want to watch in seconds with a quick search.
+
+## How to use
+
+### Step 1: Open the web app
+1. use the navigation link given in the readme file
+2. clone the git repo into your local machine and use your favourite ide to run it into your browser
+
+### Step 2: Add a Movie to the Watchlist
+1. Fill out the form with the following details:
+    - **Movie Name**: Enter the name of the movie e.g Mr. Robot.
+    - **Release Year**: Enter the release year of the movie e.g 2015.
+    - **Genre**: Enter the genre of the movie e.g  Crime, Drama, Thriller.
+    - **Status**: Enter the status of the movie (e.g., Watched, To Watch).
+    - **Description**: Enter a brief description of the movie e.g  Elliot, a cybersecurity engineer and hacker, is recruited by an underground hacker group called fsociety to take down a corrupt corporation while struggling with his own psychological issue..
+2. Click the **Save Movie** button to add the movie to your watchlist or watched and track all your shows here lets save in the watchlist and see the next page output.
+
+![Add Movie Form](./src/image.png)
+
+### Step 3: View the Watchlist
+1. Once you have added movies, you can view them in the watchlist section.
+2. The watchlist displays the movies you have added with options to mark them as watched.
+
+![Watchlist](./src/page2.png)
+
+### Step 4: Mark a Movie as Watched
+1. To mark a movie as watched, click the **Mark as Watched** button next to the movie you want to mark.
+2. The movie will be moved to the watched list and removed from the watchlist.
+
+### Tips
+- Ensure that you have filled out all required fields before saving a movie.
+- You can add as many movies as you like to your watchlist.
+
+By following these steps, you can easily manage your movie watchlist and keep track of the movies you want to watch or have already watched.
 
 ## Developer Information
 Author: Louis Maina
@@ -117,13 +148,6 @@ This project is licensed under the MIT License.
 - **Selling without permission:** You cannot sell the code without explicit permission from the author.
 - **Claiming as original work:** You cannot claim the code as your own original work.
 - **Removing original copyright notice:** You cannot remove the original copyright notice from the code.
-
-### API Usage Restrictions
-- **Rate Limiting:** The API has rate limits to prevent abuse. Exceeding these limits may result in temporary or permanent suspension of access.
-- **Commercial Use:** The API cannot be used for commercial purposes without explicit permission from the author.
-- **Modification:** You are not allowed to modify the API endpoints or responses.
-- **Redistribution:** You cannot redistribute the API or its responses without permission.
-- **Security:** Any attempt to breach the security of the API will result in immediate termination of access and potential legal action.
 
 For any questions or permissions regarding API usage, please contact:
 - **GitHub:** [studentdev-glitch](https://github.com/studentdev-glitch)
