@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon for the wb page-->
     <link rel="shortcut icon" href="../src/CineTrack.jpg" type="image/x-icon">
     <title>CineTrack-home</title>
     <!-- Tailwind CDN -->
@@ -13,20 +14,20 @@
 </head>
 
 <body class="bg-gray-900 text-white">
-    <!-- Navigation Bar -->
-    <nav class="bg-black/80 shadow-md sticky top-0 z-50 w-full">
+    <!-- Navigation Bar main parent -->
+    <nav class="bg-black sticky top-0 w-full">
         <div class="w-full">
             <!-- Navigation bar Content -->
-            <div class="flex items-center justify-between px-4 py-3 ">
+            <div class="justify-between flex items-center px-4 py-3 ">
                 <!-- lottie aniamtion movie Logo -->
                 <div class="flex items-center">
                     <dotlottie-player src="https://lottie.host/97d7f220-0ff3-4b85-aa40-e6e567df4f02/U7hRqMIr4z.lottie"
                         background="transparent" speed="2" style="width: 40px; height: 50px" loop
                         autoplay></dotlottie-player>
                 </div>
-                <!-- Username Display -->
-                <span id="usernameDisplay" class="text-gray-300 text-sm text-wrap"></span>
-                <!-- Navigation Links -->
+                <!-- Username navigation bar display -->
+                <span id="usernameDisplay" class="text-gray-300 text-sm"></span>
+                <!-- Navigation Links to switch between different html pages-->
                 <div class="flex ml-4 mr-4">
                     <ul class="flex mr-2">
                         <li><a href="../pages/home.html" class="hover:text-red-500  m-2">Home</a></li>
@@ -36,19 +37,20 @@
                 </div>
             </div>
     </nav>
-    <main class="min-h-screen bg-gray-900 items-center text-white flex justify-center m-4">
+    <main class="min-h-screen items-center text-white bg-gray-900  flex justify-center m-4">
         <div class="bg-gray-800 p-6 rounded-2xl max-w-md w-full">
+            <!-- form heading -->
             <h2 class="text-xl text-center mb-4">Add a Movie</h2>
             <form id="movieForm" class="mb-4">
                 <!-- Movie Name -->
                 <div>
                     <label for="movieName" class="text-sm">Movie Name</label>
-                    <input type="text" id="movie-name" name="movieName"class="w-full mt-1 p-2 rounded-lg bg-gray-700 outline-none"required>
+                    <input type="text" id="movie-name" name="movieName"class="w-full mt-1 p-2 bg-gray-700 rounded-lg outline-none"required>
                 </div>
                 <!-- movie Release Year -->
                 <div>
                     <label for="releaseYear" class="text-sm ">Release Year</label>
-                    <input type="date" id="release-year" name="releaseYear"class="w-full mt-1 p-2 rounded-lg bg-gray-700 outline-none"max="2025" required>
+                    <input type="date" id="release-year" name="releaseYear"class="w-full mt-1 p-2 bg-gray-700 rounded-lg outline-none"max="2025" required>
                 </div>
                 <!-- movie category -->
                 <div>
@@ -59,10 +61,9 @@
                         <option value="Drama">Drama</option>
                         <option value="Horror">Horror</option>
                         <option value="Sci-Fi">Sci-Fi</option>
-                        <option value="Other">Other</option>
                     </select>
                 </div>
-                <!-- movie Status -->
+                <!-- movie user Status -->
                 <div>
                     <label for="status" class="block ">Status</label>
                     <select id="status" name="genre"
@@ -71,7 +72,7 @@
                         <option value="Watchlist">Add to watchlist</option>
                     </select>
                 </div>
-                <!-- Movie description -->
+                <!-- Movie extra description -->
                 <div>
                     <label for="movie-details" class="block text-sm font-medium">Movie description</label>
                     <textarea id="movie-details" name="movie info" rows="3"
