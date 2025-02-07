@@ -4,7 +4,7 @@
 CineTrack is a web app that helps users to keep track of movies and TV shows you want to watch, are watching, or have already seen. 
 
 ## Live Project
-You can view the live web project here: [Live CineTrack Website]()
+You can view the live web project here: [Live CineTrack Website](https://studentdev-glitch.github.io/CineTrack/)
 
 ## Features
 -  **Track Movies & TV Shows** – Keep track of what you've watched and what you plan to watch.
