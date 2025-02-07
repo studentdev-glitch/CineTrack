@@ -1,78 +1,50 @@
-document.addEventListener("DOMContentLoaded", function () {
-    displayWatchlistMovies();
-});
+document.addEventListener("DOMContentLoaded", displayWatchlistMovies);
 
 function displayWatchlistMovies() {
-    // Retrieve movies from localStorage
+    // access the movie list of all movies from localStorage
     const movies = JSON.parse(localStorage.getItem("movies")) || [];
-    const watchlistContainer = document.getElementById("watchlistContainer");
+    const watchlistgrid = document.getElementById("watchlistgrid");
+    
+    // clear the page html through dom for like new updates being added or removed
+    watchlistgrid.innerHTML = "";
 
-    // Clear the container before adding movies
-    watchlistContainer.innerHTML = "";
+    // Filter only the movies that are marked as Watchlist as the page should show watchist content in the grid
+    const watchlistMovies = movies.filter(movie => movie.status === "Watchlist");
 
-    // Loop through the movies and display only the ones that are in the watchlist
-    movies.forEach(movie => {
-        if (movie.status === "Watchlist") {
-            const movieCard = document.createElement("div");
-            movieCard.classList.add("bg-gray-800", "rounded-xl", "overflow-hidden", "transform", "hover:scale-105", "transition", "duration-300");
+     // displays this when no movies are is yet saved in the local storage or no movie is yet marked as watchlist by the user yet 
+    if (watchlistMovies.length === 0) {
+        watchlistgrid.innerHTML = "<p class='text-center text-white'>No movies in your watchlist.</p>";
+        return;
+    }
 
-            // Create the image element for the movie
-            const movieImage = document.createElement("img");
-            movieImage.src = movie.posterPath || "../src/CineTrack.jpg"; // Relative path to the movie poster
-            movieImage.alt = movie.movieName;
-            movieImage.classList.add("h-80", "w-full", "object-cover");
+    // loops through watchedMovies and then uses this data to display to the web page through dom manipulation
+    watchlistMovies.forEach(movie => {
+        const movieCard = document.createElement("div");
+        movieCard.className = "bg-gray-800 p-4 rounded-lg ";
 
-            // Create the movie details
-            const movieDetails = document.createElement("div");
-            movieDetails.classList.add("p-4");
-
-            // Movie name and release year
-            const movieTitle = document.createElement("h3");
-            movieTitle.classList.add("text-lg", "font-bold");
-            movieTitle.textContent = `${movie.movieName} (${movie.releaseYear})`;
-
-            // Movie description
-            const movieDescription = document.createElement("p");
-            movieDescription.classList.add("text-gray-400", "text-sm", "mt-2");
-            movieDescription.textContent = movie.description.length > 150 ? `${movie.description.slice(0, 150)}...` : movie.description;
-
-            // "Mark as Watched" button
-            const markAsWatchedButton = document.createElement("button");
-            markAsWatchedButton.classList.add("mt-4", "bg-red-500", "py-2", "rounded-lg", "text-white", "w-full", "hover:bg-red-600");
-            markAsWatchedButton.textContent = "Mark as Watched";
-            markAsWatchedButton.addEventListener("click", () => {
-                markAsWatched(movie.id);
-            });
-
-            // Append everything to the card
-            movieDetails.appendChild(movieTitle);
-            movieDetails.appendChild(movieDescription);
-            movieDetails.appendChild(markAsWatchedButton);
-            movieCard.appendChild(movieImage);
-            movieCard.appendChild(movieDetails);
-
-            // Append the card to the container
-            watchlistContainer.appendChild(movieCard);
-        }
+        movieCard.innerHTML = `
+            <img src="${movie.posterPath || '../src/CineTrack.jpg'}" alt="${movie.movieName}" class="h-64 w-full rounded-md mb-4 object-contain">
+            <h3 class="text-lg font-bold mt-2">${movie.movieName} (${movie.releaseYear})</h3>
+            <p class="text-sm">Released: ${movie.releaseYear}</p>
+            <p class="text-sm">movie genre: ${movie.genre}</p>
+            <p class="text-sm">movie description: ${movie.description}</p>
+            <button class="mt-4 bg-red-500 py-2 rounded-lg text-white w-full hover:bg-red-600" onclick="markAsWatched(${movie.id})">Mark as Watched</button>
+        `;
+        //adds the content to its parent
+        watchlistgrid.appendChild(movieCard);
     });
 }
 
-// Function to mark a movie as watched
+// Function to mark a movie as watched and update in the local storage
 function markAsWatched(movieId) {
-    // Retrieve the movies from localStorage
+    // Retrieve the list of movies from localStorage and saved into a variable
     let movies = JSON.parse(localStorage.getItem("movies")) || [];
-
-    // Find the movie by its id
-    const movieIndex = movies.findIndex(movie => movie.id === movieId);
-
-    if (movieIndex !== -1) {
-        // Update the status of the movie to 'Watched'
-        movies[movieIndex].status = "Watched";
-
-        // Save the updated movies array back to localStorage
+    // gets the actual movie meta data so as to update the changes into the local storage
+    const movie = movies.find(movie => movie.id === movieId);
+    // updates the movie user data into the local storage
+    if (movie) {
+        movie.status = "Watched";
         localStorage.setItem("movies", JSON.stringify(movies));
-
-        // Refresh the watchlist page
         displayWatchlistMovies();
     }
 }
