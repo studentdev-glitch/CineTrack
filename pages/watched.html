@@ -5,14 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineTrack - Watched Movies</title>
+    <!-- fav icon -->
     <link rel="shortcut icon" href="../src/CineTrack.jpg" type="image/x-icon">
+    <!-- Lottie CDN -->
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gray-900 text-white">
-    <!-- Navigation Bar -->
-    <nav class="bg-black/80 shadow-md sticky top-0 z-50 w-full">
+    <!-- Navigation Bar parent -->
+    <nav class="bg-black sticky top-0 w-full">
         <div class="w-full">
             <!-- Navigation bar Content -->
             <div class="flex items-center justify-between px-4 py-3">
@@ -22,7 +25,9 @@
                         background="transparent" speed="2" style="width: 40px; height: 50px" loop
                         autoplay></dotlottie-player>
                 </div>
-                <!-- Navigation Links -->
+                <!-- Username navigation bar display -->
+                <span id="usernameDisplay" class="text-gray-300 text-sm"></span>
+                <!-- Navigation Links to switch between different html pages-->
                 <div class="flex ml-4 mr-4">
                     <ul class="flex mr-2">
                         <li><a href="../pages/home.html" class="hover:text-red-500  m-2">Home</a></li>
@@ -34,12 +39,15 @@
         </div>
     </nav>
 
-    <div class="container mx-auto px-6 py-8">
+    <div class="mx-auto px-6 py-8">
+        //page h2 title
         <h2 class="text-3xl font-bold mb-8 text-white text-center">Watched Movies</h2>
-        <div id="watchedContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+        // grid responsiveness between desktop and tablet modes
+        <div id="watchedContainer" class="grid md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
     </div>
-
+    // External js
     <script src="../js/watched.js"></script>
+    <script src="../js/username.js"></script>
 </body>
 
 </html>
