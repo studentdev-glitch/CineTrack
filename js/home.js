@@ -1,15 +1,5 @@
 // use of dom to get form through the form id 
 const form = document.getElementById("movieForm");
-// use of dom to get the username text on the navbar through its id
-const usernameDisplay = document.getElementById("usernameDisplay"); 
-
-// getting the username from the local storage 
-const users_username = localStorage.getItem("username");
-if (users_username) {
-    usernameDisplay.textContent = `Welcome, ${users_username}!`;
-} else {
-    usernameDisplay.textContent = "Welcome!";
-}
 
 // Checks if a movie is in local storage and then if there is no data it is initialized
 let movies = JSON.parse(localStorage.getItem("movies")) || [];
