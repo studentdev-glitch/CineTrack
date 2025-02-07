@@ -73,11 +73,11 @@ As a user, I want to keep track of movies and TV shows I have watched, am watchi
 
 ## Technologies Used
 - **HTML5** – Structuring the web app
-- **CSS3** – Styling and layout
-- **JavaScript (ES6)** – Application logic and dynamic content
+- **CSS3** – Styling ui html structure
+- **JavaScript (ES6)** – performing functions such as adding movie metadata to the local storage
 - **Git** – Version control
 - **Visual Studio Code** – Development environment
-- **Tailwind CSS** – Utility-first CSS framework
+- **Tailwind CSS** – styling ui html structure
 - **GSAP Animation** – High-performance animations
 - **Lottie Animation** – Rendering animations
 
